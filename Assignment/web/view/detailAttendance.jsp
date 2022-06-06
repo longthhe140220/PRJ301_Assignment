@@ -13,7 +13,11 @@
     </head>
     <body>
         <div>
-            <h1>Activity Attendance</h1>
+            <h1>Attendance in class</h1>
+        </div>
+        <div>
+            <p>Attendance for class with lecturer teacher at slot 
+                on time, semester in room room at FU-HL </p>
         </div>
         <div>
             <table border="1 solid black">
