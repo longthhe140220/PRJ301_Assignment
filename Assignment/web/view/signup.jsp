@@ -12,6 +12,19 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Create new Account</h1>
+        <form action="signup" method="Post">
+            <div>
+                Username<input type="text" name="txtUsername" />
+            </div>
+            <div>
+                Password<input type="text" name="txtPassword" />
+            </div>
+            <div>
+                Confirm Password<input type="text" name="txtConfirmPassword" />
+            </div>
+            <button>Sign Up</button>
+            <a href="login.jsp" >Back</a>
+        </form>
     </body>
 </html>
