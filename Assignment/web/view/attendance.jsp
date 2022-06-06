@@ -12,6 +12,23 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div>
+            <h1>Attendance Activity</h1>
+        </div>
+        <div>
+            <table border="1 solid black">
+                <tr>
+                    <th>No</th>
+                    <th>Group</th>
+                    <th>Code</th>
+                    <th>Student name</th>
+                    <th>Image</th>
+                    <th>Absent</th>
+                    <th>Present</th>
+                    <th>Comment</th>
+                    <th>Teacher</th>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>

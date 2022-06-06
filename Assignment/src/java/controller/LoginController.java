@@ -41,7 +41,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.sendRedirect("view/detailAttendance.jsp");
+        response.sendRedirect("view/attendance.jsp");
     } 
 
     /** 
