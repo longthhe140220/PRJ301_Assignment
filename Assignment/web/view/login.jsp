@@ -23,7 +23,7 @@
                 <input type="checkbox" name="remember" />
                 <label>Remember</label>
             </div>
-            <button>Login</button>
+            <button>Login</button> <br/>
             <a href="signup.jsp">New Account?</a>
         </form>
     </body>
