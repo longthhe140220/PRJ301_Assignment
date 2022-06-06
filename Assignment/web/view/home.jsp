@@ -12,6 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>FPT University Academy Portal</h1>
+        <div>
+            <a href ="timetable.jsp">Weekly TimeTable</a>
+        </div>
+        <div>
+            <a href="universitytimetable.jsp">University TimeTable</a>
+        </div>
     </body>
 </html>
