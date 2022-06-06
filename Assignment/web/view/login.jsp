@@ -24,7 +24,7 @@
                 <label>Remember</label>
             </div>
             <button>Login</button>
-            
+            <p>New Account? <a href="signup.jsp" /></p>
         </form>
     </body>
 </html>
