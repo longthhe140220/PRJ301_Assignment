@@ -12,6 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div>
+            <h1>FPT University Academic Portal</h1>
+        </div>
+        <div>
+            <a href="home.jsp">Home</a>
+        </div>
          <div>
             <h1>Select a course, then a group...</h1>
         </div>
