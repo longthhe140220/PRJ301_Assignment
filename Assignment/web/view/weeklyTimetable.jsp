@@ -13,6 +13,7 @@
     </head>
     <body>
         <h1>FPT University Academic Portal</h1>
+        <a href="home.jsp">Home</a>
         <h1>Activities for LongTHHE140220</h1>
         <b>Note:</b><p>These activities do not include extra-curriculum activities, such as club activities ...</p>
         <b>Chu Thich</b><p>Các hoạt động trong bảng dưới không bao gồm hoạt động ngoại khóa, ví dụ như hoạt động câu lạc bộ ...
@@ -23,7 +24,7 @@
             Các phòng tập bằng đầu bằng R thuộc khu vực sân tập Vovinam.
             Các phòng bắt đầu bằng DE thuộc tòa nhà Delta. VD: DE,..
             Little UK (LUK) thuộc tầng 5 tòa nhà Delta</p>
-        <table>
+        <table border ="1px solid black">
             <thead>
                 <tr>
                     <th></th>
@@ -43,6 +44,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -54,8 +56,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>   
+                    <td></td> 
                 </tr>
                 <tr>
                     <td>Slot2</td>
@@ -66,7 +67,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>   
                 </tr>
                 <tr>
                     <td>Slot3</td>
@@ -77,7 +77,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>   
                 </tr>
                 <tr>
                     <td>Slot4</td>
@@ -88,7 +87,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>   
                 </tr>
                 <tr>
                     <td>Slot5</td>
@@ -99,7 +97,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>   
                 </tr>
                 <tr>
                     <td>Slot6</td>
@@ -110,7 +107,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>   
                 </tr>
                 <tr>
                     <td>Slot7</td>
@@ -121,7 +117,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>   
                 </tr>
                 <tr>
                     <td>Slot8</td>
@@ -132,7 +127,6 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>   
                 </tr>
             </tbody>
         </table>
