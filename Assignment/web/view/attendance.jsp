@@ -22,7 +22,6 @@
                     <th>Group</th>
                     <th>Code</th>
                     <th>Student name</th>
-                    <th>Image</th>
                     <th>Absent</th>
                     <th>Present</th>
                     <th>Comment</th>
