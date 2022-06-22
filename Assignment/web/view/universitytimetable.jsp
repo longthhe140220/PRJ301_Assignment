@@ -16,7 +16,7 @@
             <h1>FPT University Academic Portal</h1>
         </div>
         <div>
-            <a href="home.jsp">Home</a>
+            <a href="weeklyTimetable.jsp">Weekly Timetable</a>
         </div>
          <div>
             <h1>Select a course, then a group...</h1>
@@ -25,11 +25,10 @@
             <table border="1 solid black">
                 <tr>
                     <th>Campus</th>
-                    <th>Term</th>
-                    <th>Department</th>
                     <th>Course</th>
                     <th>Group</th>       
                 </tr>
+                
             </table>
         </div>
         <div>
@@ -40,8 +39,7 @@
         <div>
              <table border="1 solid black">
                 <tr>
-                    <th>Index</th>
-                    <th>Image</th>
+                    <th>No</th>
                     <th>Member</th>
                     <th>Code</th>
                     <th>SurName</th>   

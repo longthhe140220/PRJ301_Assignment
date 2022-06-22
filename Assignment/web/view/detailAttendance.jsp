@@ -19,14 +19,14 @@
             <p>Attendance for class with lecturer teacher at slot 
                 on time, semester in room room at FU-HL </p>
         </div>
-        <div>
+        <form action="attendance" method="post" >
+            <div>
             <table border="1 solid black">
                 <tr>
                     <th>No</th>
                     <th>Group</th>
                     <th>Code</th>
                     <th>Student name</th>
-                    <th>Image</th>
                     <th>Status</th>
                     <th>Comment</th>
                     <th>Teacher</th>
@@ -34,5 +34,9 @@
                 </tr>
             </table>
         </div>
+            <div><input type="submit" name="edit"/></div>
+            <div><input type="submit" name="cancel"/></div>
+        </form>
+        
     </body>
 </html>

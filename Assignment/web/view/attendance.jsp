@@ -15,7 +15,8 @@
         <div>
             <h1>Attendance Activity</h1>
         </div>
-        <div>
+        <form action="attendance" method="post" >
+            <div>
             <table border="1 solid black">
                 <tr>
                     <th>No</th>
@@ -29,5 +30,7 @@
                 </tr>
             </table>
         </div>
+        <div><input type="submit" name="Save"/></div>
+        </form>
     </body>
 </html>
