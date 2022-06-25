@@ -5,12 +5,15 @@
 
 package controller;
 
+import dal.WeeklyDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import model.Lecturer;
 
 /**
  *
@@ -53,7 +56,10 @@ public class WeeklyTimetableController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        response.sendRedirect("view/weeklyTimetable.jsp");
+        WeeklyDBContext db = new WeeklyDBContext();
+        ArrayList<Lecturer> lecturers = db.getLecturerList();
+        request.setAttribute("lecturerList", lecturers);
+        request.getRequestDispatcher("view/weeklyTimetable.jsp").forward(request, response);
     } 
 
     /** 

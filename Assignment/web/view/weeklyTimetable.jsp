@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,15 @@
     <body>
         <h1>FPT University Academic Portal</h1>
         <a href="universityTimetable.jsp">University Timetable</a>
-        <h1>Activities for LongTHHE140220</h1>
+        <div>
+            Lecturer: <select name="lecturerID">
+                <c:forEach items="${requestScope.lecturerList}" var="c">
+                    <option value="${c.lecturerID}">${c.lecturerFirstName} ${c.lecturerMiddleName} ${c.lecturerLastName}</option>
+                </c:forEach>
+            </select>
+            <input type="submit" value="Search" />
+        </div>
+            
         <table border ="1px solid black">
             <thead>
                 <tr>
