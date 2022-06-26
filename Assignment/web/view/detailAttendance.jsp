@@ -13,11 +13,12 @@
     </head>
     <body>
         <div>
-            <h1>Attendance in class SE1500</h1>
+            <h1>Attendance in class ${requestScope.sessList.Group.getGroupName}</h1>
         </div>
         <div>
-            <p>Attendance for SE1500 with Lưu Trường Giang at slot 1
-                on 2020-06-06 in room 1 at FU-HL </p>
+            <p>Attendance for ${requestScope.sessList.Group.getGroupName} with ${requestScope.sessList.Lecturer.getLecturerFirstName}+
+                ${requestScope.sessList.Lecturer.getLecturerMiddleName}+${requestScope.sessList.Lecturer.getLecturerLastName} at slot ${requestScope.sessList.getSlot}
+                on ${requestScope.sessList.getTeachDate} in room 1 at FU-HL </p>
         </div>
         <form action="attendance" method="post" >
             <div>
