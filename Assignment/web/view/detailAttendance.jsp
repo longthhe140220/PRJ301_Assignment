@@ -15,14 +15,15 @@
     </head>
     <body>
         <div>
-            <h1>Attendance in class ${requestScope.sessList[1].Group.getGroupName}</h1>
+            <h1>Attendance in class ${requestScope.attList[0].group.groupName} </h1>
         </div>
         <div>
-            <p>Attendance for ${requestScope.sessList[0].Group.getGroupName} with ${requestScope.sessList[0].Lecturer.getLecturerFirstName}+
-                ${requestScope.sessList[0].Lecturer.getLecturerMiddleName}+${requestScope.sessList[0].Lecturer.getLecturerLastName} at slot ${requestScope.sessList[0].getSlot}
-                on ${requestScope.sessList[0].getTeachDate} in room 1 at FU-HL </p>
+            <p>Attendance for ${requestScope.attList[0].group.groupName} with ${requestScope.attList[0].lecturer.lecturerFirstName}
+                ${requestScope.attList[0].lecturer.lecturerMiddleName} ${requestScope.attList[0].lecturer.lecturerLastName}
+                at slot ${requestScope.attList[0].session.slot}
+                on ${requestScope.attList[0].session.teachDate} in room ${requestScope.attList[0].room.roomCode} at ${requestScope.attList[0].room.campus} </p>
         </div>
-        <form action="attendance" method="post" >
+      
             <div>
             <table border="1 solid black">
                 <tr>
@@ -35,18 +36,27 @@
                     <th>Teacher</th>
                     <th>Record Time</th>
                 </tr>
-                <c:forEach var="c" items="${requestScope.sessList}">
+                <%! int count = 0; %>
+                <c:forEach var="c" items="${requestScope.attList}">
                     <tr>
+                        <td><%= count + 1 %></td>
+                        <td>${c.group.groupName}</td>
+                        <td>${c.student.roleNumber}</td>
+                        <td>${c.student.firstName} ${c.student.middleName} ${c.student.lastName}</td>
+                        <td>${c.absent?"Present":"Absent"}</td>
                         <td></td>
-                        <td></td>
-                        <td>${c.Student.roleNumber}</td>
+                        <td>${c.lecturer.lecturerFirstName}
+                ${c.lecturer.lecturerMiddleName} ${c.lecturer.lecturerLastName}</td>
+                        <td>${c.session.teachDate}</td>
                     </tr>
+                     <% count += 1; %>
                 </c:forEach>
+               
             </table>
         </div>
             <div><input type="submit" value="edit"/></div>
             <div><input type="submit" value="cancel"/></div>
-        </form>
+      
         
     </body>
 </html>

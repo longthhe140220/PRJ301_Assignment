@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import model.Attendance;
 import model.Session;
 
 /**
@@ -57,9 +58,9 @@ public class DetailAttendanceController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         DetailDBContext db = new DetailDBContext();
-        ArrayList<Session> sess = db.getListStudent(1);
-        request.setAttribute("sessList", sess);
-        request.getRequestDispatcher("view/detailAttendance.jsp").forward(request, response);
+        ArrayList attList = db.getAttendanceList(1);
+        request.setAttribute("attList", attList);
+        request.getRequestDispatcher("view/detailAttendance.jsp").forward(request, response);     
     } 
 
     /** 

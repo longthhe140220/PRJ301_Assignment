@@ -13,16 +13,56 @@ public class Attendance {
     private int sessionID;
     private int studentID;
     private Boolean absent;
+    private Student student;
+    private Group group;
+    private Lecturer lecturer;
+    private Room room;
+    private Session session;
 
     public Attendance() {
     }
 
-    public Attendance(int attendanceID, int sessionID, int studentID, Boolean absent) {
-        this.attendanceID = attendanceID;
-        this.sessionID = sessionID;
-        this.studentID = studentID;
-        this.absent = absent;
+    public Group getGroup() {
+        return group;
     }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
 
     public int getAttendanceID() {
         return attendanceID;
