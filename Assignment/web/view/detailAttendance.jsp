@@ -54,7 +54,7 @@
                
             </table>
         </div>
-            <div><input type="submit" value="edit"/></div>
+            <a  href="attendance?id=${requestScope.attList[0].session.sessionID}">Edit</a>          
             <div><input type="submit" value="cancel"/></div>
       
         

@@ -30,9 +30,10 @@
                     <th>Teacher</th>
                 </tr>
                 <%! int count = 0; %>
+                
                 <c:forEach var="c" items="${requestScope.attList}">
                     <tr>
-                        <td></td>
+                        <td><%= count + 1%></td>
                         <td>${c.group.groupName}</td>
                         <input type="hidden" name="studentID<%= count + 1 %>" value="${c.studentID}"/>
                         <input type="hidden" name="sessionID" value="${c.sessionID}"/>
@@ -46,7 +47,7 @@
                 ${c.lecturer.lecturerMiddleName} ${c.lecturer.lecturerLastName}</td>                    
                     </tr>
                      <% count += 1; %>
-                </c:forEach>
+               </c:forEach>
             </table>
         </div>
         <div><input type="submit" value="Save"/></div>

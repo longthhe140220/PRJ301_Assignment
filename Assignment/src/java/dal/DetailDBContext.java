@@ -48,6 +48,7 @@ public class DetailDBContext extends DBContext<Attendance> {
                 Session se = new Session();
                 se.setTeachDate(rs.getDate("TeachDate"));
                 se.setSlot(rs.getInt("Slot"));
+                se.setSessionID(id);
                 att.setSession(se);
                 Group g = new Group();
                 g.setGroupName(rs.getString("GroupName"));

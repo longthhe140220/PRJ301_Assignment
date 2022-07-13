@@ -63,7 +63,8 @@ public class AttendanceController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AttendanceDBContext db = new AttendanceDBContext();
-        ArrayList attList = db.getAttendanceList(1);
+        int id = Integer.parseInt(request.getParameter("id"));
+        ArrayList attList = db.getAttendanceList(id);
         request.setAttribute("attList", attList);
         request.getRequestDispatcher("view/attendance.jsp").forward(request, response);
     }
