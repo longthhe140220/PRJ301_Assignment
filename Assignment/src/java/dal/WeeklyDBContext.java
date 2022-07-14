@@ -4,6 +4,7 @@
  */
 package dal;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,6 +47,29 @@ public class WeeklyDBContext extends DBContext<Group>{
             }
         }
         return lecturers;
+    }
+     public ArrayList<Date> getDateList(){
+        ArrayList<Date> dateList = new ArrayList<>();
+        try {
+            String sql = "select TeachDate from Session";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while(rs.next())
+            {
+                dateList.add(rs.getDate("TeachDate"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return dateList;
     }
     @Override
     public ArrayList<Group> list() {

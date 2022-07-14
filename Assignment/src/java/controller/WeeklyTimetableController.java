@@ -12,7 +12,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 import model.Lecturer;
 
 /**
@@ -59,9 +66,29 @@ public class WeeklyTimetableController extends HttpServlet {
         WeeklyDBContext db = new WeeklyDBContext();
         ArrayList<Lecturer> lecturers = db.getLecturerList();
         request.setAttribute("lecturerList", lecturers);
+        WeeklyDBContext db1 = new WeeklyDBContext();
+        ArrayList<Date> dateList = db1.getDateList();
+        ArrayList<Date> dateMondayList = new ArrayList<>();
+        for(Date dt : dateList){
+            Calendar c= Calendar.getInstance();
+            c.setTime(dt);
+            if(c.get(Calendar.DAY_OF_WEEK) == 1){
+                dateMondayList.add(dt);
+            }
+        }
+        Collections.sort(dateMondayList, new Comparator<Date>() {
+            @Override
+            public int compare(Date o1, Date o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        Set<Date> set = new HashSet<Date>(dateMondayList);
+        ArrayList<Date> dateResultModayList = new ArrayList<Date>(set);
         request.getRequestDispatcher("view/weeklyTimetable.jsp").forward(request, response);
     } 
-
+              
+    
+    
     /** 
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
