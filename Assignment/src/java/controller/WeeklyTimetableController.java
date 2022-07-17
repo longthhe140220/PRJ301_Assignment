@@ -68,26 +68,26 @@ public class WeeklyTimetableController extends HttpServlet {
         request.setAttribute("lecturerList", lecturers);
         WeeklyDBContext db1 = new WeeklyDBContext();
         ArrayList<Date> dateList = db1.getDateList();
-        ArrayList<Date> dateMondayList = new ArrayList<>();
+        ArrayList<LocalDate> dateMondayList = new ArrayList<>();
         for(Date dt : dateList){
             Calendar c= Calendar.getInstance();
             c.setTime(dt);
-            if(c.get(Calendar.DAY_OF_WEEK) == 1){
-                dateMondayList.add(dt);
+            if(c.get(Calendar.DAY_OF_WEEK) == 2){          
+                dateMondayList.add(dt.toLocalDate());
             }
         }
-        Collections.sort(dateMondayList, new Comparator<Date>() {
+        Collections.sort(dateMondayList, new Comparator<LocalDate>() {
             @Override
-            public int compare(Date o1, Date o2) {
+            public int compare(LocalDate o1, LocalDate o2) {
                 return o1.compareTo(o2);
             }
         });
-        Set<Date> set = new HashSet<Date>(dateMondayList);
-        ArrayList<Date> dateResultModayList = new ArrayList<Date>(set);
+        Set<LocalDate> set = new HashSet<LocalDate>(dateMondayList);
+        ArrayList<LocalDate> dateResultModayList = new ArrayList<LocalDate>(set);
+        request.setAttribute("dateList", dateResultModayList);
         request.getRequestDispatcher("view/weeklyTimetable.jsp").forward(request, response);
     } 
               
-    
     
     /** 
      * Handles the HTTP <code>POST</code> method.

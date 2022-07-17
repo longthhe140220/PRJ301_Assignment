@@ -11,6 +11,40 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <script>
+            function getDate(obj){
+                var options = obj.children;         
+                var html1 = '';
+                var html2 = '';
+                var html3 = '';
+                var html4 = '';
+                var html5 = '';
+                var html6 = '';
+                var html7 = '';
+                
+                
+                for (var i = 0; i < options.length; i++){
+                    if (options[i].selected){
+                        html1 += '<th>'+(LocalDate)options[i].value.+'</th>';
+                        html2 += '<th>'+options[i].value+'</th>';
+                        html3 += '<th>'+options[i].value+'</th>';
+                        html4 += '<th>'+options[i].value+'</th>';
+                        html5 += '<th>'+options[i].value+'</th>';
+                        html6 += '<th>'+options[i].value+'</th>';
+                        html7 += '<th>'+options[i].value+'</th>';
+                    }
+                }
+ 
+                document.getElementById('monday').innerHTML = html1;
+                document.getElementById('tuesday').innerHTML = html2;
+                document.getElementById('wednesday').innerHTML = html3;
+                document.getElementById('thursday').innerHTML = html4;
+                document.getElementById('friday').innerHTML = html5;
+                document.getElementById('saturday').innerHTML = html6;
+                document.getElementById('sunday').innerHTML = html7;
+            }
+        </script>
+            
     </head>
     <body>
         <h1>FPT University Academic Portal</h1>
@@ -37,14 +71,21 @@
                     <th>Sunday</th>
                 </tr>
                 <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th>
+                        <select name="date" onchange="getDate(this)">
+                                    <c:forEach var="d" items="${requestScope.dateList}">
+                                        <option onclick="" value="${d}" >${d} To ${d.plusDays(7)}</option>
+                                    </c:forEach>
+                        </select>
+                    </th>
+                    <th id="monday"></th>
+                    <th id="tuesday"></th>
+                    <th id="wednesday"></th>
+                    <th id="thursday"></th>
+                    <th id="friday"></th>
+                    <th id="saturday"></th>
+                    <th id="sunday"></th>
+                    
                 </tr>
             </thead>
             <tbody>
