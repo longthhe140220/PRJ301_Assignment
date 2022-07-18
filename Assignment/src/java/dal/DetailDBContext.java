@@ -68,12 +68,12 @@ public class DetailDBContext extends DBContext<Attendance> {
                 attList.add(att);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 connection.close();
             } catch (SQLException ex) {
-                Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return attList;
@@ -94,17 +94,17 @@ public class DetailDBContext extends DBContext<Attendance> {
             }
             connection.commit();
         } catch (SQLException ex) {
-            Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
             try {
                 connection.rollback();
             } catch (SQLException ex1) {
-                Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+                Logger.getLogger(DetailDBContext.class.getName()).log(Level.SEVERE, null, ex1);
             }
         } finally {
             try {
                 connection.setAutoCommit(true);
             } catch (SQLException ex) {
-                Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DetailDBContext.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

@@ -22,7 +22,7 @@ import model.Session;
  *
  * @author Admin
  */
-public class AttendanceController extends HttpServlet {
+public class UpdateAttendanceController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,7 +66,7 @@ public class AttendanceController extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         ArrayList attList = db.getAttendanceList(id);
         request.setAttribute("attList", attList);
-        request.getRequestDispatcher("view/attendance.jsp").forward(request, response);
+        request.getRequestDispatcher("view/updateAttendance.jsp").forward(request, response);
     }
 
     /**
@@ -91,7 +91,7 @@ public class AttendanceController extends HttpServlet {
         }
         DetailDBContext db = new DetailDBContext();
         db.updateAttendance(se);
-
+        
     }
 
     /**

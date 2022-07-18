@@ -16,9 +16,12 @@ public class Session {
     private int groupID;
     private Date teachDate;
     private int slot;
+    private boolean status;
     private Subject subject;
     private Room room;
     private Group group;
+    private Student student;
+    private Lecturer lecturer;
     private ArrayList<Attendance> attends = new ArrayList<>();
     
 
@@ -88,6 +91,31 @@ public class Session {
     public void setGroup(Group group) {
         this.group = group;
     }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
+
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
+    }
+    
     
     
 }

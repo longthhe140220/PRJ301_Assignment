@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>AttendanceController</servlet-name>
-        <servlet-class>controller.AttendanceController</servlet-class>
+        <servlet-class>controller.UpdateAttendanceController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>WeeklyTimetableController</servlet-name>
@@ -12,9 +12,13 @@
         <servlet-name>DetailAttendanceController</servlet-name>
         <servlet-class>controller.DetailAttendanceController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AttendController</servlet-name>
+        <servlet-class>controller.AttendController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AttendanceController</servlet-name>
-        <url-pattern>/attendance</url-pattern>
+        <url-pattern>/updateAttendance</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>WeeklyTimetableController</servlet-name>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>DetailAttendanceController</servlet-name>
         <url-pattern>/details</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AttendController</servlet-name>
+        <url-pattern>/attend</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

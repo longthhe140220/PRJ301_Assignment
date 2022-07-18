@@ -1,6 +1,6 @@
 <%-- 
     Document   : attendance
-    Created on : Jul 18, 2022, 10:40:00 PM
+    Created on : Jun 7, 2022, 1:38:37 AM
     Author     : Admin
 --%>
 
@@ -16,7 +16,7 @@
         <div>
             <h1>Attendance Activity</h1>
         </div>
-        <form action="attend" method="post" >
+        <form action="updateAttendance" method="post" >
             <div>
             <table border="1 solid black">
                 <tr>
@@ -31,16 +31,16 @@
                 </tr>
                 <%! int count = 0; %>
                 
-                <c:forEach var="c" items="${requestScope.sessList}">
+                <c:forEach var="c" items="${requestScope.attList}">
                     <tr>
                         <td><%= count + 1%></td>
                         <td>${c.group.groupName}</td>
-                        <input type="hidden" name="studentID<%= count + 1 %>" value="${c.student.studentID}"/>
+                        <input type="hidden" name="studentID<%= count + 1 %>" value="${c.studentID}"/>
                         <input type="hidden" name="sessionID" value="${c.sessionID}"/>
                         <td>${c.student.roleNumber}</td>
                         <td>${c.student.firstName} ${c.student.middleName} ${c.student.lastName}</td>
-                        <td><input type="radio"   name="attend<%= count + 1 %>" value="present"/>Present</td>
-                        <td><input type="radio" checked name="attend<%= count + 1 %>" value="absent"/>Absent</td>
+                        <td><input type="radio" ${c.absent?"checked=\"checked\"":""} name="attend<%= count + 1 %>" value="present"/>Present</td>
+                        <td><input type="radio" ${!c.absent?"checked=\"checked\"":""} name="attend<%= count + 1 %>" value="absent"/>Absent</td>
                         <input type="hidden" name="index" value="<%= count + 1 %>"/>
                         <td></td>
                         <td>${c.lecturer.lecturerFirstName}

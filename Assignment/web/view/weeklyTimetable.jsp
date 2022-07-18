@@ -116,9 +116,18 @@
                             <td>
                                 <a <c:forEach var="c" items="${requestScope.sessList}" >
                                         <c:if test="${c.slot eq s.slotID and c.teachDate.toLocalDate() eq d}">
-                                            href="attendance?id=${c.sessionID}" >${c.group.groupName}<br/>-${c.subject.subjectCode}<br/>-at ${c.room.roomCode}
+                                            <c:if test="${c.status eq true}">href="details?id=${c.sessionID}"</c:if>
+                                            <c:if test="${c.status eq false}">href="attend?id=${c.sessionID}"</c:if>
+                                > ${c.group.groupName}<br/>-${c.subject.subjectCode}<br/>-at ${c.room.roomCode}
                                         </c:if>
-                                    </c:forEach> </a>
+                                    </c:forEach> </a><br/>
+                                <label> <c:forEach var="c" items="${requestScope.sessList}" >
+                                        <c:if test="${c.slot eq s.slotID and c.teachDate.toLocalDate() eq d}">
+                                            (${c.status?"Present":"Absent"})
+                                        </c:if>
+                                    </c:forEach></label>
+                                      
+                                       
                             </td>
                         </c:forEach>
                     </tr>

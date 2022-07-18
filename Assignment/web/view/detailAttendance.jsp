@@ -54,8 +54,8 @@
                
             </table>
         </div>
-            <a  href="attendance?id=${requestScope.attList[0].session.sessionID}">Edit</a>          
-            <div><input type="submit" value="cancel"/></div>
+            <a  href="updateAttendance?id=${requestScope.attList[0].session.sessionID}">Edit</a>          
+            <a href="weeklyTimetable" >Cancel</a>
       
         
     </body>

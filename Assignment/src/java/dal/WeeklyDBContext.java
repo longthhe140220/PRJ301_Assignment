@@ -76,11 +76,11 @@ public class WeeklyDBContext extends DBContext<Session> {
     public ArrayList<Session> getSessionListOneWeek(int lecturerID) {
         ArrayList<Session> sessList = new ArrayList<>();
         try {
-            String sql = "select GroupName,SubjectCode,RoomCode,SessionID,TeachDate,Slot from [Group] g        \n"
-                    + "		inner join [Subject] s on g.SubjectID = s.SubjectID\n"
-                    + "        inner join [Room] r on g.Room = r.RoomID\n"
-                    + "	 inner join [Session] sess on g.GroupID = sess.GroupID\n"
-                    + "	 where LecturerID = ?";
+            String sql = "select GroupName,SubjectCode,RoomCode,SessionID,TeachDate,Slot,Status \n"
+                    + "from [Group] g  inner join [Subject] s on g.SubjectID = s.SubjectID\n"
+                    + "inner join [Room] r on g.Room = r.RoomID\n"
+                    + "inner join [Session] sess on g.GroupID = sess.GroupID\n"
+                    + "where LecturerID = ?";
             PreparedStatement stm = connection.prepareStatement(sql);
             stm.setInt(1, lecturerID);
             ResultSet rs = stm.executeQuery();
@@ -98,6 +98,7 @@ public class WeeklyDBContext extends DBContext<Session> {
                 s.setSessionID(rs.getInt("SessionID"));
                 s.setSlot(rs.getInt("Slot"));
                 s.setTeachDate(rs.getDate("TeachDate"));
+                s.setStatus(rs.getBoolean("Status"));
                 sessList.add(s);
             }
         } catch (SQLException ex) {
@@ -111,6 +112,7 @@ public class WeeklyDBContext extends DBContext<Session> {
         }
         return sessList;
     }
+
     public ArrayList<Slot> getSlotList() {
         ArrayList<Slot> slotList = new ArrayList<>();
         try {
