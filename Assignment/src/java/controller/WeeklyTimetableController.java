@@ -14,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -21,6 +22,8 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 import model.Lecturer;
+import model.Session;
+import model.Slot;
 
 /**
  *
@@ -65,6 +68,8 @@ public class WeeklyTimetableController extends HttpServlet {
     throws ServletException, IOException {
         WeeklyDBContext db = new WeeklyDBContext();
         ArrayList<Lecturer> lecturers = db.getLecturerList();
+        Lecturer lec = lecturers.get(0);
+        request.setAttribute("lecturer",lec);
         request.setAttribute("lecturerList", lecturers);
         WeeklyDBContext db1 = new WeeklyDBContext();
         ArrayList<Date> dateList = db1.getDateList();
@@ -76,18 +81,29 @@ public class WeeklyTimetableController extends HttpServlet {
                 dateMondayList.add(dt.toLocalDate());
             }
         }
-        Collections.sort(dateMondayList, new Comparator<LocalDate>() {
-            @Override
-            public int compare(LocalDate o1, LocalDate o2) {
-                return o1.compareTo(o2);
-            }
-        });
-        Set<LocalDate> set = new HashSet<LocalDate>(dateMondayList);
-        ArrayList<LocalDate> dateResultModayList = new ArrayList<LocalDate>(set);
-        request.setAttribute("dateList", dateResultModayList);
+        Set<LocalDate> set = new HashSet<>(dateMondayList);
+        ArrayList<LocalDate> dateResultMondayList = new ArrayList<>(set);
+        request.setAttribute("dateList", dateResultMondayList);
+        //LocalDate currentDate = LocalDate.now();
+        LocalDate currentDate = LocalDate.of(2022, Month.JULY, 4);
+        ArrayList<LocalDate> currentDayOfWeek = new ArrayList<>();
+        for(LocalDate ld : dateResultMondayList){
+            if(currentDate.compareTo(ld) == 0 || currentDate.compareTo(ld.plusDays(6)) == 0 || currentDate.compareTo(ld) == 1 && currentDate.compareTo(ld.plusDays(6)) == -1){
+                for(int i = 0;i<=6;i++){
+                    currentDayOfWeek.add(ld.plusDays(i));
+                }
+            }  
+        }
+        request.setAttribute("currentDateOfWeek", currentDayOfWeek);
+        WeeklyDBContext db3 = new WeeklyDBContext();
+        ArrayList<Session> sessList = db3.getSessionListOneWeek(lec.getLecturerID());
+        request.setAttribute("sessList", sessList);
+        WeeklyDBContext db4 = new WeeklyDBContext();
+        ArrayList<Slot> slotList = db4.getSlotList();
+        request.setAttribute("slotList", slotList);
         request.getRequestDispatcher("view/weeklyTimetable.jsp").forward(request, response);
     } 
-              
+         
     
     /** 
      * Handles the HTTP <code>POST</code> method.

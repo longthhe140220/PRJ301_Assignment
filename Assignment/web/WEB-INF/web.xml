@@ -12,10 +12,6 @@
         <servlet-name>DetailAttendanceController</servlet-name>
         <servlet-class>controller.DetailAttendanceController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>UniversityTimetableController</servlet-name>
-        <servlet-class>controller.UniversityTimetableController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>AttendanceController</servlet-name>
         <url-pattern>/attendance</url-pattern>
@@ -27,10 +23,6 @@
     <servlet-mapping>
         <servlet-name>DetailAttendanceController</servlet-name>
         <url-pattern>/details</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UniversityTimetableController</servlet-name>
-        <url-pattern>/universityTimetable</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

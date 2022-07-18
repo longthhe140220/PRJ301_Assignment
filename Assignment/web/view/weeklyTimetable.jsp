@@ -25,13 +25,27 @@
                 
                 for (var i = 0; i < options.length; i++){
                     if (options[i].selected){
-                        html1 += '<th>'+(LocalDate)options[i].value.+'</th>';
-                        html2 += '<th>'+options[i].value+'</th>';
-                        html3 += '<th>'+options[i].value+'</th>';
-                        html4 += '<th>'+options[i].value+'</th>';
-                        html5 += '<th>'+options[i].value+'</th>';
-                        html6 += '<th>'+options[i].value+'</th>';
-                        html7 += '<th>'+options[i].value+'</th>';
+                        let parts = options[i].value.toString().split('-');
+                        let date = new Date(parts[0],parts[1],parts[2]);
+                        let dateResult1 = new Date();
+                        dateResult1.setDate(date.getDate() + 1);
+                         let dateResult2 = new Date();
+                        dateResult2.setDate(date.getDate() + 2);
+                         let dateResult3 = new Date();
+                        dateResult3.setDate(date.getDate() + 3);
+                         let dateResult4 = new Date();
+                        dateResult4.setDate(date.getDate() + 4);
+                         let dateResult5 = new Date();
+                        dateResult5.setDate(date.getDate() + 5);
+                         let dateResult6 = new Date();
+                        dateResult6.setDate(date.getDate() + 6);
+                        html1 += '<th value='+date+'>'+date.getDate()+'/'+date.getMonth()+'</th>';
+                        html2 += '<th>'+dateResult1.getDate()+'/'+dateResult1.getMonth()+'</th>';
+                        html3 += '<th>'+dateResult2.getDate()+'/'+dateResult2.getMonth()+'</th>';
+                        html4 += '<th>'+dateResult3.getDate()+'/'+dateResult3.getMonth()+'</th>';
+                        html5 += '<th>'+dateResult4.getDate()+'/'+dateResult4.getMonth()+'</th>';
+                        html6 += '<th>'+dateResult5.getDate()+'/'+dateResult5.getMonth()+'</th>';
+                        html7 += '<th>'+dateResult6.getDate()+'/'+dateResult6.getMonth()+'</th>';
                     }
                 }
  
@@ -48,7 +62,6 @@
     </head>
     <body>
         <h1>FPT University Academic Portal</h1>
-        <a href="universityTimetable.jsp">University Timetable</a>
         <div>
             Lecturer: <select name="lecturerID">
                 <c:forEach items="${requestScope.lecturerList}" var="c">
@@ -74,11 +87,12 @@
                     <th>
                         <select name="date" onchange="getDate(this)">
                                     <c:forEach var="d" items="${requestScope.dateList}">
-                                        <option onclick="" value="${d}" >${d} To ${d.plusDays(7)}</option>
+                                        <option value="${d}" >${d} To ${d.plusDays(6)}</option>
                                     </c:forEach>
                         </select>
                     </th>
-                    <th id="monday"></th>
+                    
+                    <th id="monday" ></th>
                     <th id="tuesday"></th>
                     <th id="wednesday"></th>
                     <th id="thursday"></th>
@@ -90,85 +104,25 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Slot1</td>
                     <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td> 
+                    <c:forEach items="${requestScope.currentDateOfWeek}" var="d">
+                        <td>${d}</td>
+                    </c:forEach>
                 </tr>
-                <tr>
-                    <td>Slot2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Slot3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Slot4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Slot5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Slot6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Slot7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Slot8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <c:forEach var="s" items="${requestScope.slotList}">
+                    <tr>
+                        <td>${s.slotCode}</td>
+                        <c:forEach var="d" items="${requestScope.currentDateOfWeek}">
+                            <td>
+                                <a <c:forEach var="c" items="${requestScope.sessList}" >
+                                        <c:if test="${c.slot eq s.slotID and c.teachDate.toLocalDate() eq d}">
+                                            href="attendance?id=${c.sessionID}" >${c.group.groupName}<br/>-${c.subject.subjectCode}<br/>-at ${c.room.roomCode}
+                                        </c:if>
+                                    </c:forEach> </a>
+                            </td>
+                        </c:forEach>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </body>

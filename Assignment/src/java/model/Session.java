@@ -16,6 +16,9 @@ public class Session {
     private int groupID;
     private Date teachDate;
     private int slot;
+    private Subject subject;
+    private Room room;
+    private Group group;
     private ArrayList<Attendance> attends = new ArrayList<>();
     
 
@@ -60,6 +63,30 @@ public class Session {
 
     public void setSlot(int slot) {
         this.slot = slot;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
     }
     
     

@@ -11,23 +11,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Attendance;
 import model.Group;
 import model.Lecturer;
+import model.Room;
+import model.Session;
+import model.Slot;
+import model.Student;
+import model.Subject;
 
 /**
  *
  * @author Admin
  */
-public class WeeklyDBContext extends DBContext<Group>{
+public class WeeklyDBContext extends DBContext<Session> {
 
-    public ArrayList<Lecturer> getLecturerList(){
+    public ArrayList<Lecturer> getLecturerList() {
         ArrayList<Lecturer> lecturers = new ArrayList<>();
         try {
             String sql = "SELECT * from Lecturer";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 Lecturer l = new Lecturer();
                 l.setLecturerID(rs.getInt("LecturerID"));
                 l.setLecturerFirstName(rs.getString("LecturerFirstName"));
@@ -37,9 +42,7 @@ public class WeeklyDBContext extends DBContext<Group>{
             }
         } catch (SQLException ex) {
             Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
+        } finally {
             try {
                 connection.close();
             } catch (SQLException ex) {
@@ -48,21 +51,19 @@ public class WeeklyDBContext extends DBContext<Group>{
         }
         return lecturers;
     }
-     public ArrayList<Date> getDateList(){
+
+    public ArrayList<Date> getDateList() {
         ArrayList<Date> dateList = new ArrayList<>();
         try {
             String sql = "select TeachDate from Session";
             PreparedStatement stm = connection.prepareStatement(sql);
             ResultSet rs = stm.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 dateList.add(rs.getDate("TeachDate"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        finally
-        {
+        } finally {
             try {
                 connection.close();
             } catch (SQLException ex) {
@@ -71,30 +72,92 @@ public class WeeklyDBContext extends DBContext<Group>{
         }
         return dateList;
     }
+
+    public ArrayList<Session> getSessionListOneWeek(int lecturerID) {
+        ArrayList<Session> sessList = new ArrayList<>();
+        try {
+            String sql = "select GroupName,SubjectCode,RoomCode,SessionID,TeachDate,Slot from [Group] g        \n"
+                    + "		inner join [Subject] s on g.SubjectID = s.SubjectID\n"
+                    + "        inner join [Room] r on g.Room = r.RoomID\n"
+                    + "	 inner join [Session] sess on g.GroupID = sess.GroupID\n"
+                    + "	 where LecturerID = ?";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setInt(1, lecturerID);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Session s = new Session();
+                Group g = new Group();
+                g.setGroupName(rs.getString("GroupName"));
+                s.setGroup(g);
+                Room r = new Room();
+                r.setRoomCode(rs.getString("RoomCode"));
+                s.setRoom(r);
+                Subject sub = new Subject();
+                sub.setSubjectCode(rs.getString("SubjectCode"));
+                s.setSubject(sub);
+                s.setSessionID(rs.getInt("SessionID"));
+                s.setSlot(rs.getInt("Slot"));
+                s.setTeachDate(rs.getDate("TeachDate"));
+                sessList.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return sessList;
+    }
+    public ArrayList<Slot> getSlotList() {
+        ArrayList<Slot> slotList = new ArrayList<>();
+        try {
+            String sql = "select * from Slot";
+            PreparedStatement stm = connection.prepareStatement(sql);
+            ResultSet rs = stm.executeQuery();
+            while (rs.next()) {
+                Slot s = new Slot();
+                s.setSlotID(rs.getInt("SlotID"));
+                s.setSlotCode(rs.getString("SlotCode"));
+                slotList.add(s);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(WeeklyDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return slotList;
+    }
+
     @Override
-    public ArrayList<Group> list() {
+    public ArrayList<Session> list() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Group get(int id) {
+    public Session get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void insert(Group model) {
+    public void insert(Session model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(Group model) {
+    public void update(Session model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void delete(Group model) {
+    public void delete(Session model) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-   
+
 }
