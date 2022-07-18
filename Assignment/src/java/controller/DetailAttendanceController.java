@@ -58,7 +58,7 @@ public class DetailAttendanceController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         DetailDBContext db = new DetailDBContext();
-        ArrayList attList = db.getAttendanceList(1);
+        ArrayList attList = db.getAttendanceList(2);
         request.setAttribute("attList", attList);
         request.getRequestDispatcher("view/detailAttendance.jsp").forward(request, response);     
     } 

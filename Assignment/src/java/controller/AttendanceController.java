@@ -62,7 +62,7 @@ public class AttendanceController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        AttendanceDBContext db = new AttendanceDBContext();
+        DetailDBContext db = new DetailDBContext();
         int id = Integer.parseInt(request.getParameter("id"));
         ArrayList attList = db.getAttendanceList(id);
         request.setAttribute("attList", attList);
@@ -89,7 +89,7 @@ public class AttendanceController extends HttpServlet {
             att.setAbsent(request.getParameter("attend" + index).equals("present"));
             se.getAttends().add(att);
         }
-        AttendanceDBContext db = new AttendanceDBContext();
+        DetailDBContext db = new DetailDBContext();
         db.updateAttendance(se);
 
     }

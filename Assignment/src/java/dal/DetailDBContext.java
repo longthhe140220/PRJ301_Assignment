@@ -26,7 +26,7 @@ public class DetailDBContext extends DBContext<Attendance> {
     public ArrayList<Attendance> getAttendanceList(int id) {
         ArrayList<Attendance> attList = new ArrayList<>();
         try {
-            String sql = "select RoleNumber,FirstName,MiddleName,LastName,Absent,TeachDate,Slot,GroupName,LecturerFirstName,LecturerMiddeName,LecturerLastName,RoomCode,Campus\n"
+            String sql = "select s.SessionID,att.StudentID,RoleNumber,FirstName,MiddleName,LastName,Absent,TeachDate,Slot,GroupName,LecturerFirstName,LecturerMiddeName,LecturerLastName,RoomCode,Campus\n"
                     + "from Attendance att inner join Session s on att.SessionID = s.SessionID\n"
                     + "inner join [Group] g on s.GroupID = g.GroupID\n"
                     + "inner join [Lecturer] le on g.LecturerID = le.LecturerID\n"
@@ -39,7 +39,10 @@ public class DetailDBContext extends DBContext<Attendance> {
             while (rs.next()) {
                 Attendance att = new Attendance();
                 att.setAbsent(rs.getBoolean("Absent"));
+                att.setSessionID(id);
+                att.setStudentID(rs.getInt("StudentID"));
                 Student stu = new Student();
+                stu.setStudentID(rs.getInt("StudentID"));
                 stu.setFirstName(rs.getString("FirstName"));
                 stu.setMiddleName(rs.getString("MiddleName"));
                 stu.setLastName(rs.getString("LastName"));
@@ -75,6 +78,39 @@ public class DetailDBContext extends DBContext<Attendance> {
         }
         return attList;
     }
+
+    public void updateAttendance(Session model) {
+        try {
+            connection.setAutoCommit(false);
+            for (Attendance att : model.getAttends()) {
+                String sql = "UPDATE [Attendance]\n"
+                        + "   SET [Absent] = ?\n"
+                        + " WHERE [SessionID] = ? AND [StudentID] = ?";
+                PreparedStatement stm = connection.prepareStatement(sql);
+                stm.setBoolean(1, att.getAbsent());
+                stm.setInt(2, model.getSessionID());
+                stm.setInt(3, att.getStudentID());
+                stm.executeUpdate();
+            }
+            connection.commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                connection.rollback();
+            } catch (SQLException ex1) {
+                Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }
+                
+                
 
     @Override
     public ArrayList<Attendance> list() {
