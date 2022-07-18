@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
     <body>
@@ -18,16 +19,16 @@
         </div>
         <form action="updateAttendance" method="post" >
             <div>
-            <table border="1 solid black">
+            <table class="table">
                 <tr>
-                    <th>No</th>
-                    <th>Group</th>
-                    <th>Code</th>
-                    <th>Student name</th>
-                    <th>Present</th>
-                    <th>Absent</th>
-                    <th>Comment</th>
-                    <th>Teacher</th>
+                    <th scope="col">No</th>
+                    <th scope="col">Group</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Student name</th>
+                    <th scope="col">Present</th>
+                    <th scope="col">Absent</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Teacher</th>
                 </tr>
                 <%! int count = 0; %>
                 
@@ -50,7 +51,9 @@
                </c:forEach>
             </table>
         </div>
-        <div><input type="submit" value="Save"/></div>
+         <div class="text-center">
+            <input class="btn btn-primary" type="submit" value="Save"/>
+        </div>
         </form>
     </body>
 </html>

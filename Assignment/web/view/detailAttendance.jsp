@@ -10,31 +10,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
         <title>JSP Page</title>
     </head>
     <body>
         <div>
-            <h1>Attendance in class ${requestScope.attList[0].group.groupName} </h1>
+            <h1 class="display-4">Attendance in class ${requestScope.attList[0].group.groupName} </h1>
         </div>
         <div>
-            <p>Attendance for ${requestScope.attList[0].group.groupName} with ${requestScope.attList[0].lecturer.lecturerFirstName}
+            <h1>Attendance for ${requestScope.attList[0].group.groupName} with ${requestScope.attList[0].lecturer.lecturerFirstName}
                 ${requestScope.attList[0].lecturer.lecturerMiddleName} ${requestScope.attList[0].lecturer.lecturerLastName}
                 at slot ${requestScope.attList[0].session.slot}
-                on ${requestScope.attList[0].session.teachDate} in room ${requestScope.attList[0].room.roomCode} at ${requestScope.attList[0].room.campus} </p>
+                on ${requestScope.attList[0].session.teachDate} in room ${requestScope.attList[0].room.roomCode} at ${requestScope.attList[0].room.campus} </h1>
         </div>
       
             <div>
-            <table border="1 solid black">
+            <table class="table">
                 <tr>
-                    <th>No</th>
-                    <th>Group</th>
-                    <th>Code</th>
-                    <th>Student name</th>
-                    <th>Status</th>
-                    <th>Comment</th>
-                    <th>Teacher</th>
-                    <th>Record Time</th>
+                    <th scope="col">No</th>
+                    <th scope="col">Group</th>
+                    <th scope="col">Code</th>
+                    <th scope="col">Student name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Comment</th>
+                    <th scope="col">Teacher</th>
+                    <th scope="col">Record Time</th>
                 </tr>
                 <%! int count = 0; %>
                 <c:forEach var="c" items="${requestScope.attList}">
@@ -54,8 +55,11 @@
                
             </table>
         </div>
-            <a  href="updateAttendance?id=${requestScope.attList[0].session.sessionID}">Edit</a>          
-            <a href="weeklyTimetable" >Cancel</a>
+                <div class="text-center">
+                    <a class="btn btn-primary" href="updateAttendance?id=${requestScope.attList[0].session.sessionID}">Edit</a>          
+                    <a class="btn btn-primary" href="weeklyTimetable" >Cancel</a>
+                </div>
+            
       
         
     </body>
