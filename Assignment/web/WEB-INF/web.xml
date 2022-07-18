@@ -16,6 +16,10 @@
         <servlet-name>AttendController</servlet-name>
         <servlet-class>controller.AttendController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchWeeklytablebyLecturer</servlet-name>
+        <servlet-class>controller.SearchWeeklytablebyLecturer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AttendanceController</servlet-name>
         <url-pattern>/updateAttendance</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>AttendController</servlet-name>
         <url-pattern>/attend</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchWeeklytablebyLecturer</servlet-name>
+        <url-pattern>/searchByLecturer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

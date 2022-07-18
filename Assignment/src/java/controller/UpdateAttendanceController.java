@@ -91,7 +91,7 @@ public class UpdateAttendanceController extends HttpServlet {
         }
         DetailDBContext db = new DetailDBContext();
         db.updateAttendance(se);
-        
+        response.sendRedirect("weeklyTimetable");
     }
 
     /**
